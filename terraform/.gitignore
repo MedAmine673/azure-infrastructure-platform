@@ -1,0 +1,15 @@
+# Terraform
+*.tfstate
+*.tfstate.*
+.terraform/
+.terraform.lock.hcl
+
+# CLI crash logs
+crash.log
+
+# SSH keys (important)
+*.pem
+*.pub
+
+# IDE
+.vscode/
