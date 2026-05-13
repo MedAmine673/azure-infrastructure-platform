@@ -1,11 +1,3 @@
-resource "azurerm_public_ip" "pip" {
-  name                = "${var.vm_name}-pip"
-  location            = var.location
-  resource_group_name = var.resource_group_name
-
-  allocation_method = "Static"
-}
-
 resource "azurerm_network_interface" "nic" {
   name                = "${var.vm_name}-nic"
   location            = var.location
@@ -15,8 +7,6 @@ resource "azurerm_network_interface" "nic" {
     name                          = "internal"
     subnet_id                     = var.subnet_id
     private_ip_address_allocation = "Dynamic"
-
-    public_ip_address_id = azurerm_public_ip.pip.id
   }
 }
 
@@ -34,7 +24,7 @@ resource "azurerm_linux_virtual_machine" "vm" {
 
   admin_ssh_key {
     username   = "azureuser"
-    public_key = file("~/.ssh/id_rsa.pub")
+    public_key = file("${pathexpand("~/.ssh/id_rsa.pub")}")
   }
 
   os_disk {
@@ -45,7 +35,7 @@ resource "azurerm_linux_virtual_machine" "vm" {
   source_image_reference {
     publisher = "Canonical"
     offer     = "UbuntuServer"
-    sku       = "22_04-lts"
+    sku       = "16.04-LTS"
     version   = "latest"
   }
 }

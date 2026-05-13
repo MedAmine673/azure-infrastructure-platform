@@ -1,4 +1,4 @@
-variable "resource_group"{
+variable "resource_group_name"{
     type = string
 }
 
@@ -10,6 +10,6 @@ variable "subnet_id"{
     type = string
 }
 
-varible "vm_name"{
+variable "vm_name"{
     type = string
 }
