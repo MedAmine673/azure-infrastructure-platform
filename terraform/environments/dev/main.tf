@@ -28,3 +28,14 @@ module "vm" {
 
   subnet_id = module.network.subnet_id
 }
+
+module "database" {
+  source = "./modules/database"
+
+  db_name             = var.db_name
+  resource_group_name = var.resource_group_name
+  location            = var.location
+
+  admin_username = var.admin_username
+  admin_password = var.admin_password
+}
